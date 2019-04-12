@@ -24,9 +24,9 @@ import card.Foundation;
  * A JPanel that plays Solitaire. This class contains a main method that will
  * open a new JFrame with this JPanel. The window contains a menu for user to
  * select the kind of solitaire being played. {@link Klondike} Solitaire is played
- * by default but the user also has the option the choose {@link FreeCell} or 
+ * by default but the user also has the option the choose {@link FreeCell} or
  * {@link Spider} Solitaire.
- * 
+ *
  * @author Warren Godone-Maresca
  */
 public class Solitaire extends JPanel implements ActionListener, ItemListener {
@@ -44,7 +44,7 @@ public class Solitaire extends JPanel implements ActionListener, ItemListener {
 	private JMenuItem argosShowItem, annoShowItem, americanShowItem,
 					  aztecShowItem, volumeItem, argosStatsItem,
 					  annoStatsItem, americanStatsItem, aztecStatsItem;
-	
+
 	/** Points to menu items in the game panel							*/
 	private JMenuItem argosItem, annoItem, americanItem, aztecItem, mainMenuItem, klondikeItem, freeCellItem,
 					  easySpiderItem, hardSpiderItem, yukonItem;
@@ -52,14 +52,14 @@ public class Solitaire extends JPanel implements ActionListener, ItemListener {
 	/** Holds the button to display the rules.								*/
 	private JMenuItem rulesItem;
 
-	/** 
+	/**
 	 * Instantiates this with Klondike Solitaire by default.
 	 */
 	public Solitaire(){
 		game = new Klondike(this);
 	}
 
-	/** 
+	/**
 	 * Draws the game.
 	 */
 	@Override
@@ -68,15 +68,15 @@ public class Solitaire extends JPanel implements ActionListener, ItemListener {
 		game.paint(pane);
 	}
 
-	/** 
+	/**
 	 * Returns the menu bar for the game panel
 	 */
 	private JMenuBar makeGameMenuBar()
 	{
 		JMenuBar bar = new JMenuBar();	//Holds all of the buttons.
 		JMenu selectMenu = new JMenu("Select");
-		
-		mainMenuItem = new JMenuItem("Main Menu"); 
+
+		mainMenuItem = new JMenuItem("Main Menu");
 		mainMenuItem.addActionListener(this);
 		selectMenu.add(mainMenuItem);   //Goes back to the main menu.
 
@@ -119,16 +119,16 @@ public class Solitaire extends JPanel implements ActionListener, ItemListener {
 
 		return bar; //The bar has been created.
 	}
-	
-	/** 
+
+	/**
 	 * Returns the menu bar for the game panel
 	 */
 	private JMenuBar makeMainMenuBar()
 	{
 		JMenuBar bar = new JMenuBar();	//Holds all of the buttons.
 		JMenu settingsMenu = new JMenu("Settings");
-		
-		argosShowItem = new JCheckBoxMenuItem("Show Argos"); 
+
+		argosShowItem = new JCheckBoxMenuItem("Show Argos");
 		argosShowItem.addActionListener(this);
 		settingsMenu.add(argosShowItem);   //Toggles show of Argos
 		if (MainMenu.argosBtn.isVisible())
@@ -141,8 +141,8 @@ public class Solitaire extends JPanel implements ActionListener, ItemListener {
 		}
 		argosShowItem.addItemListener(this);
 
-		
-		annoShowItem = new JCheckBoxMenuItem("Show Anno Domini"); 
+
+		annoShowItem = new JCheckBoxMenuItem("Show Anno Domini");
 		annoShowItem.addActionListener(this);
 		settingsMenu.add(annoShowItem);   //Toggles show of Anno Domini
 		if (MainMenu.annoBtn.isVisible())
@@ -154,8 +154,8 @@ public class Solitaire extends JPanel implements ActionListener, ItemListener {
 			annoShowItem.setSelected(false);
 		}
 		annoShowItem.addItemListener(this);
-		
-		americanShowItem = new JCheckBoxMenuItem("Show American Toad"); 
+
+		americanShowItem = new JCheckBoxMenuItem("Show American Toad");
 		americanShowItem.addActionListener(this);
 		settingsMenu.add(americanShowItem);   //Toggles show of American Toad
 		if (MainMenu.americanBtn.isVisible())
@@ -167,8 +167,8 @@ public class Solitaire extends JPanel implements ActionListener, ItemListener {
 			americanShowItem.setSelected(false);
 		}
 		americanShowItem.addItemListener(this);
-		
-		aztecShowItem = new JCheckBoxMenuItem("Show Aztec"); 
+
+		aztecShowItem = new JCheckBoxMenuItem("Show Aztec");
 		aztecShowItem.addActionListener(this);
 		settingsMenu.add(aztecShowItem);   //Toggles show of Aztec
 		if (MainMenu.aztecBtn.isVisible())
@@ -180,8 +180,8 @@ public class Solitaire extends JPanel implements ActionListener, ItemListener {
 			aztecShowItem.setSelected(false);
 		}
 		aztecShowItem.addItemListener(this);
-		
-		volumeItem = new JCheckBoxMenuItem("Volume Toggle"); 
+
+		volumeItem = new JCheckBoxMenuItem("Volume Toggle");
 		volumeItem.addActionListener(this);
 		settingsMenu.add(volumeItem);
 		if (clip.isRunning())
@@ -198,23 +198,23 @@ public class Solitaire extends JPanel implements ActionListener, ItemListener {
 
 		/*Statistics for each game */
 		JMenu statsMenu = new JMenu("Statistics");
-		
+
 		argosStatsItem = new JMenuItem("Argos");
 		argosStatsItem.addActionListener(this);
 		statsMenu.add(argosStatsItem);
-		
+
 		annoStatsItem = new JMenuItem("Anno Domini");
 		annoStatsItem.addActionListener(this);
 		statsMenu.add(annoStatsItem);
-		
+
 		americanStatsItem = new JMenuItem("American Toad");
 		americanStatsItem.addActionListener(this);
 		statsMenu.add(americanStatsItem);
-		
+
 		aztecStatsItem = new JMenuItem("Aztec");
 		aztecStatsItem.addActionListener(this);
 		statsMenu.add(aztecStatsItem);
-		
+
 		bar.add(statsMenu);
 
 		return bar; //The bar has been created.
@@ -292,69 +292,69 @@ public class Solitaire extends JPanel implements ActionListener, ItemListener {
 		{
 			if(game != null)
 			{
-				if (Desktop.isDesktopSupported()) 
+				if (Desktop.isDesktopSupported())
 				{
 		            // File in user working directory, System.getProperty("user.dir");
 		            File file = new File(game.getName() + "Rules.pdf");
-		            if (!file.exists()) 
+		            if (!file.exists())
 		            {
 		                // In JAR
 		                InputStream inputStream = ClassLoader.getSystemClassLoader().getResourceAsStream("resources/AnnoRules.pdf");
 		                // Copy file
 		                OutputStream outputStream = null;
-						try 
+						try
 						{
 							outputStream = new FileOutputStream(file);
-						} 
-						catch (FileNotFoundException e1) 
+						}
+						catch (FileNotFoundException e1)
 						{
 							e1.printStackTrace();
 						}
 		                byte[] buffer = new byte[1024];
 		                int length;
-		                try 
+		                try
 		                {
 							while ((length = inputStream.read(buffer)) > 0)
 							{
 							    outputStream.write(buffer, 0, length);
 							}
-						} 
-		                catch (IOException e1) 
+						}
+		                catch (IOException e1)
 		                {
 							e1.printStackTrace();
 						}
-		                try 
+		                try
 		                {
 							outputStream.close();
-						} 
-		                catch (IOException e1) 
+						}
+		                catch (IOException e1)
 		                {
 							e1.printStackTrace();
 						}
-		                try 
+		                try
 		                {
 							inputStream.close();
-						} 
-		                catch (IOException e1) 
+						}
+		                catch (IOException e1)
 		                {
 							e1.printStackTrace();
 						}
 		            }
 		            // Open file
-		            try 
+		            try
 		            {
 						Desktop.getDesktop().open(file);
-					} 
-		            catch (IOException e1) 
+					}
+		            catch (IOException e1)
 		            {
 						e1.printStackTrace();
 					}
 		        }
 			}
-			
+
 			return; //So we don't remove the listeners.
 		}
-		
+
 		//Open statistics
 		if(e.getSource() == argosStatsItem){
 			Statistics.openStatistics("Argos");
@@ -369,12 +369,12 @@ public class Solitaire extends JPanel implements ActionListener, ItemListener {
 			Statistics.openStatistics("Aztec Pyramid");
 			return; //So we don't remove the listeners.
 		}
-		
+
 		//The listeners need to be removed or else there will still be a
 		//reference to the previous game object.
 		this.removeMouseListener(game);
 		this.removeMouseMotionListener(game);
-		
+
 		//Get game name
 		String gameName;
 		if(game instanceof Argos)
@@ -402,7 +402,7 @@ public class Solitaire extends JPanel implements ActionListener, ItemListener {
 			Statistics.startGame("American Toad");
         } else if(e.getSource() == annoItem){
 			Statistics.leaveGame(gameName);
-            game = new AnnoDomini(this); 
+            game = new AnnoDomini(this);
 			Statistics.startGame("Anno Domini");
         } else if (e.getSource() == aztecItem) {
 			Statistics.leaveGame(gameName);
@@ -481,8 +481,8 @@ public class Solitaire extends JPanel implements ActionListener, ItemListener {
 			clip.open(ais);
 			FloatControl gainControl = (FloatControl) clip.getControl(FloatControl.Type.MASTER_GAIN);
 			gainControl.setValue(-12.0f); //lowers the volume by 12db
-	        clip.loop(clip.LOOP_CONTINUOUSLY);              
-			
+	        clip.loop(clip.LOOP_CONTINUOUSLY);
+
 
 		} catch (Exception e) {
 			e.printStackTrace();
@@ -496,7 +496,7 @@ public class Solitaire extends JPanel implements ActionListener, ItemListener {
 	public static Container contentPane = frame.getContentPane();
 	public static MainMenu mainMenuPanel = new MainMenu();
 	public static Solitaire gamePanel = new Solitaire();
-	
+
 	public static void main(String[] args)
 	{
 		//More GUI creation
@@ -511,6 +511,6 @@ public class Solitaire extends JPanel implements ActionListener, ItemListener {
 		frame.setSize(gamePanel.getPreferredSize());
 		frame.setVisible(true);
 		frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-		
+
 	}
 }
